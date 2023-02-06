@@ -35,6 +35,7 @@ export const defineProps = {
     speed: { type: Boolean, default: true },//是否支持快进快退 //移动端不支持
     currentTime: { type: Number, default: 0 }, //当前播放时间
     playsinline: { type: Boolean, default: false },//ios端 点击播放是否全屏
+    showContextMenu: { type: Boolean, default: false }, //是否显示右键菜单
     muted: { type: Boolean, default: false }, //静音
     speedRate: { type: Array, default: () => ["2.0", "1.5", "1.25", "1.0", "0.75", "0.5",] }, //播放倍速
     autoPlay: { type: Boolean, default: false }, //自动播放
