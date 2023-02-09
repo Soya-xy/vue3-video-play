@@ -84,7 +84,11 @@
       maxlength="0"
     />
     <!-- 预加载动画 -->
-    <d-loading :loadType="state.loadStateType" />
+    <d-loading :loadType="state.loadStateType">
+      <template #ended="video">
+        <slot name="ended" :video="video.video"></slot>
+      </template>
+    </d-loading>
     <d-contextmenu v-if="state.showContextMenu" />
     <!-- PC端播放按钮控制器  移动端调用自带控制器-->
     <div class="d-player-control" ref="refPlayerControl" v-if="!isMobile && state.control">

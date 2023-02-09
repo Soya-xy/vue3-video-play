@@ -20,9 +20,11 @@
             </span>
             <!-- 播放结束 -->
             <span v-show="loadType == 'ended'">
-                <p @click="replayHandle" class="d-flex-x d-pointer">
-                    <i class="iconfont icon-replay f24 mr5"></i>重新播放
-                </p>
+                <slot name="ended" :video="video">
+                    <p @click="replayHandle" class="d-flex-x d-pointer">
+                        <i class="iconfont icon-replay f24 mr5"></i>重新播放
+                    </p>
+                </slot>
             </span>
             <!-- 播放错误 -->
             <span v-show="loadType == 'error' || loadType == 'stalled'">
@@ -46,6 +48,9 @@ const props = defineProps({
         default: '',
     },
 })
+const video = computed(()=>{
+    return proxy.$parent
+})
 const replayHandle = () => {
     proxy.$parent.play()
 }
@@ -68,9 +73,11 @@ const loadingStyle = computed(() => {
 .f50 {
     font-size: 50px;
 }
+
 .f24 {
     font-size: 24px;
 }
+
 .d-loading {
     position: absolute;
     left: 0;
@@ -86,6 +93,7 @@ const loadingStyle = computed(() => {
     text-align: center;
     font-size: 13px;
 }
+
 // .d-play-btn {
 //     width: 90px;
 //     height: 90px;
